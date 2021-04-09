@@ -36,6 +36,8 @@ namespace covid_simulation_game
         static bool areYouVaccinated = false;
         static string vaccinationsChoice = "tbc";
         static double vaccinationSpreadRate = 0;
+        static bool vaccinatedOrNot = false;
+
         static void Main(string[] args)
         {
             //getting my colours and telling the user what is happening
@@ -249,7 +251,10 @@ namespace covid_simulation_game
         // method for nolockdown, and no isscalation facility
         public static double noUserChanges()
         {
-            spreadRate = orignalSpreadRate;
+            if (vaccinatedOrNot == false)
+            {
+                spreadRate = orignalSpreadRate;
+            }
             importedCases = 0;
             recovered = 0;
             iscalationNotWorking();
@@ -259,10 +264,13 @@ namespace covid_simulation_game
         //method for going into lockdown without an issalation facility
         public static double goingIntoLockDown()
         {
-            money = money - 500000000;
+            money = money - 400000000;
             importedCases = 0;
             recovered = 0;
-            spreadRate = lockdownRValue;
+            if (vaccinatedOrNot == false)
+            {
+                spreadRate = lockdownRValue;
+            }
             iscalationNotWorking();
             figuringOutTheCases();
 
@@ -271,7 +279,10 @@ namespace covid_simulation_game
         // method for no lockdown but with an isscalation facility
         public static double noUserChangesWithAIscalationFacilityWorking()
         {
-            spreadRate = orignalSpreadRate;
+            if (vaccinatedOrNot == false)
+            {
+                spreadRate = orignalSpreadRate;
+            }
             importedCases = 0;
             recovered = 0;
             money = money - 400000000;
@@ -281,10 +292,13 @@ namespace covid_simulation_game
         // going into lockdown with a working issolation facility
         public static double goingIntoLockdownWithAIscalationFacilityWorking()
         {
-            spreadRate = lockdownRValue;
+            if (vaccinatedOrNot == false)
+            {
+                spreadRate = lockdownRValue;
+            }
             importedCases = 0;
             recovered = 0;
-            money = money - 900000000;
+            money = money - 800000000;
             figuringOutTheCases();
             return 1;
         }
@@ -387,10 +401,10 @@ namespace covid_simulation_game
                 Console.WriteLine("Astrazeneca: this vaccination is 90% effective and will cost you $500,000,000 to vaccinate");
                 Console.WriteLine("Moderna: this vaccination is 95% effective and will cost $3,400,000,000 to vaccinate the whole country");
                 Console.WriteLine("pfizer: this vaccination is 95% effective and will cost $2,000,000,000 to vaccinate the country");
-                string[] typeOfVaccinations = { "Astrazeneca", "Moderna", "pfizer" };
+                
                 trueOrFalse = false;
 
-                string vaccinationsChoice = "tbc";
+
                 while (trueOrFalse == false)
                 {
                     try
@@ -447,11 +461,12 @@ namespace covid_simulation_game
             VaccinationsChoices();
             if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "pfizer")
             {
+                vaccinatedOrNot = true;
                 
                 Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
                 Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
                 trueOrFalse = false;
-                Console.WriteLine("your spread rate is" + spreadRate);
+                Console.WriteLine("your spread rate is" + vaccinationsChoice);
                 while (trueOrFalse == false)
                 {
                     try
@@ -472,12 +487,12 @@ namespace covid_simulation_game
                     }
 
                 }
-                Console.WriteLine("your spread rate is" + spreadRate);
+                Console.WriteLine("your spread rate is" + vaccinationsChoice);
                 callingTheIssalationFacility();
             }
-            else
+            if(vaccinationsChoice == "no")
             {
-                Console.WriteLine("your spread rate is" + spreadRate);
+                Console.WriteLine("your spread rate is" + vaccinationsChoice);
                 Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
                 Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
                 trueOrFalse = false;
