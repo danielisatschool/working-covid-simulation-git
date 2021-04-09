@@ -110,7 +110,7 @@ namespace covid_simulation_game
             Console.WriteLine("your starting spread rate is " + orignalSpreadRate + " people infected per person infected");
 
             // calling the methods for what the user wants to do.
-            while (totalCases < 6000000 && money > 0)
+            while (totalCases < 60000000000 && money > 0)
             {
                 if (totalCases > 500000 || deaths > 5000 || money < 800000000)
                 {
@@ -131,7 +131,7 @@ namespace covid_simulation_game
                 }
                 
 
-                if (weekNum > 5 && weekNum <= 2000)
+                if (weekNum > 5 && weekNum <= 20)
                 {
 
                     Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
@@ -159,94 +159,22 @@ namespace covid_simulation_game
                     }
                     if (weekNum > 9)
                     {
-                        if (iccalationFacility != "yes")
-                        {
-                            Console.WriteLine("do you want to build a isolation  facility");
-                            trueOrFalse = false;
-                            while (trueOrFalse = false)
-                            {
-                                try
-                                {
-                                    iccalationFacility = Console.ReadLine();
-                                    if (iccalationFacility == "yes" || iccalationFacility == "no")
-                                        trueOrFalse = true;
-                                    else
-                                    {
-                                        Console.WriteLine("please check your spelling, yes or no");
-                                    }
-
-                                }
-                                catch
-                                {
-
-                                    Console.WriteLine("please check your spelling yes or no");
-                                }
-
-
-
-                            }
-                        }
-                            if (iccalationFacility == "yes" && lockDown == "yes")
-                            {
-                                goingIntoLockdownWithAIscalationFacilityWorking();
-                                money = money - 450000000;
-                                Console.WriteLine("your total money is now $" + money);
-                                Console.WriteLine("press enter when finished");
-                                enter = Console.ReadLine();
-                                Console.Clear();
-                            }
-                            else if (iccalationFacility == "yes" && lockDown == "no")
-                            {
-                                noUserChangesWithAIscalationFacilityWorking();
-                                money = money + 50000000;
-                                Console.WriteLine("press enter when finished");
-                                enter = Console.ReadLine();
-                                Console.Clear();
-                            }
-                            else if (iccalationFacility == "no" && lockDown == "no")
-                            {
-                                noUserChanges();
-                                money = money + 50000000;
-                                Console.WriteLine("press enter when finished");
-                                enter = Console.ReadLine();
-                                Console.Clear();
-                            }
-                            else if (iccalationFacility == "no" && lockDown == "yes")
-                            {
-                                goingIntoLockDown();
-                                money = money - 450000000;
-                                Console.WriteLine("your total money is now $" + money);
-                                Console.WriteLine("press enter when finished");
-                                enter = Console.ReadLine();
-                                Console.Clear();
-                            }
-                        }
-                        if (weekNum < 9)
-                        {
-                            if (lockDown == "yes")
-                            {
-                                goingIntoLockDown();
-                                money = money - 400000000;
-                                Console.WriteLine("your total money is now $" + money);
-                                Console.WriteLine("press enter when finished");
-                                enter = Console.ReadLine();
-                                Console.Clear();
-                            }
-                            else if (lockDown == "no")
-                            {
-                                noUserChanges();
-                                money = money + 50000000;
-                                Console.WriteLine("press enter when finished");
-                                enter = Console.ReadLine();
-                                Console.Clear();
-                            }
-                        }
+                        callingTheIssalationFacility();
+                    }
+                    if (weekNum < 9)
+                    {
+                        calingGoingIntoLockdown();
+                    }
 
                         
-                    }
-                    weekNum = weekNum + 2;
-
                 }
+                if(weekNum > 20)
+                {
+                    usingVaccinationsChosen();
+                }
+                weekNum = weekNum + 2;
+
+            }
                 
             
 // telling me if i lost of won or lost
@@ -331,6 +259,7 @@ namespace covid_simulation_game
         //method for going into lockdown without an issalation facility
         public static double goingIntoLockDown()
         {
+            money = money - 500000000;
             importedCases = 0;
             recovered = 0;
             spreadRate = lockdownRValue;
@@ -345,6 +274,7 @@ namespace covid_simulation_game
             spreadRate = orignalSpreadRate;
             importedCases = 0;
             recovered = 0;
+            money = money - 400000000;
             figuringOutTheCases();
             return 1;
         }
@@ -354,13 +284,101 @@ namespace covid_simulation_game
             spreadRate = lockdownRValue;
             importedCases = 0;
             recovered = 0;
+            money = money - 900000000;
             figuringOutTheCases();
             return 1;
         }
+        public static double callingTheIssalationFacility()
+        {
+            if (iccalationFacility != "yes")
+            {
+                Console.WriteLine("do you want to build a isolation  facility");
+                trueOrFalse = false;
+                while (trueOrFalse == false)
+                {
+                    try
+                    {
+                        iccalationFacility = Console.ReadLine();
+                        if (iccalationFacility == "yes" || iccalationFacility == "no")
+                            trueOrFalse = true;
+                        else
+                        {
+                            Console.WriteLine("please check your spelling, yes or no");
+                        }
+
+                    }
+                    catch
+                    {
+
+                        Console.WriteLine("please check your spelling yes or no");
+                    }
+
+
+
+                }
+            }
+            if (iccalationFacility == "yes" && lockDown == "yes")
+            {
+                goingIntoLockdownWithAIscalationFacilityWorking();
+                money = money - 450000000;
+                Console.WriteLine("your total money is now $" + money);
+                Console.WriteLine("press enter when finished");
+                enter = Console.ReadLine();
+                Console.Clear();
+            }
+            else if (iccalationFacility == "yes" && lockDown == "no")
+            {
+                noUserChangesWithAIscalationFacilityWorking();
+                money = money + 50000000;
+                Console.WriteLine("press enter when finished");
+                enter = Console.ReadLine();
+                Console.Clear();
+            }
+            else if (iccalationFacility == "no" && lockDown == "no")
+            {
+                noUserChanges();
+                money = money + 50000000;
+                Console.WriteLine("press enter when finished");
+                enter = Console.ReadLine();
+                Console.Clear();
+            }
+            else if (iccalationFacility == "no" && lockDown == "yes")
+            {
+                goingIntoLockDown();
+                money = money - 450000000;
+                Console.WriteLine("your total money is now $" + money);
+                Console.WriteLine("press enter when finished");
+                enter = Console.ReadLine();
+                Console.Clear();
+            }
+            return 1;
+        }
+        public static double calingGoingIntoLockdown()
+        {
+            if (lockDown == "yes")
+            {
+                goingIntoLockDown();
+                money = money - 400000000;
+                Console.WriteLine("your total money is now $" + money);
+                Console.WriteLine("press enter when finished");
+                enter = Console.ReadLine();
+                Console.Clear();
+            }
+            else if (lockDown == "no")
+            {
+                noUserChanges();
+                money = money + 50000000;
+                Console.WriteLine("press enter when finished");
+                enter = Console.ReadLine();
+                Console.Clear();
+            }
+            return 1;
+        }
+
+
         public static double VaccinationsChoices()
         {
-            weekNum = weekNum + 2;
-            areYouVaccinated = false;
+
             if (areYouVaccinated == false)
             {
                 
@@ -399,7 +417,7 @@ namespace covid_simulation_game
                 }
                 if (vaccinationsChoice == "Astrazeneca")
                 {
-                    vaccinationSpreadRate = 0.25 * orignalSpreadRate;
+                    vaccinationSpreadRate = 0.1 * orignalSpreadRate;
                     spreadRate = vaccinationSpreadRate;
                     money = money - 500000000;
                     Console.WriteLine("your total money is now $" + money);
@@ -422,6 +440,72 @@ namespace covid_simulation_game
 
             return 1;
 
+        }
+        public static double usingVaccinationsChosen()
+        {
+            Console.WriteLine("your spread rate is" + spreadRate);
+            VaccinationsChoices();
+            if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "pfizer")
+            {
+                
+                Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
+                Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
+                trueOrFalse = false;
+                Console.WriteLine("your spread rate is" + spreadRate);
+                while (trueOrFalse == false)
+                {
+                    try
+                    {
+                        lockDown = Console.ReadLine();
+                        if (lockDown == "yes" || lockDown == "no")
+                            trueOrFalse = true;
+                        else
+                        {
+                            Console.WriteLine("please check your spelling, yes or no");
+                        }
+
+                    }
+                    catch
+                    {
+
+                        Console.WriteLine("please check your spelling yes or no");
+                    }
+
+                }
+                Console.WriteLine("your spread rate is" + spreadRate);
+                callingTheIssalationFacility();
+            }
+            else
+            {
+                Console.WriteLine("your spread rate is" + spreadRate);
+                Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
+                Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
+                trueOrFalse = false;
+                while (trueOrFalse == false)
+                {
+                    try
+                    {
+                        lockDown = Console.ReadLine();
+                        if (lockDown == "yes" || lockDown == "no")
+                            trueOrFalse = true;
+                        else
+                        {
+                            Console.WriteLine("please check your spelling, yes or no");
+                        }
+
+                    }
+                    catch
+                    {
+
+                        Console.WriteLine("please check your spelling yes or no");
+                    }
+
+                }
+
+                callingTheIssalationFacility();
+            }
+            Console.WriteLine("your spread rate is" + spreadRate);
+            return 1;
         }
 
 
