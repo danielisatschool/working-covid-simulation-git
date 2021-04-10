@@ -8,12 +8,13 @@ namespace covid_simulation_game
         // hi
         // comment
         // creating my variables
+        static int counter = 0;
         static double currentCases = 0;
         static double totalCases = 0;
         static double spreadRate = 0;
         static double orignalSpreadRate = 0;
         static double importedCases = 0;
-        static double deathRate = 0.034;
+        static double deathRate = 0;
         static double money = 0;
         static double deaths = 0;
         static double weekNum = 2;
@@ -22,7 +23,7 @@ namespace covid_simulation_game
         static bool trueOrFalse = false;
         static int level = 0;
         static int[] levelArray = new int[4];
-        static int currentCasesForAInt = 0;
+        static int currentCasesForAInt = 1;
         static int totalCasesInAInt = 0;
         static int deathsInAInt = 0;
         static double lockdownRValue = 0.8;
@@ -37,13 +38,15 @@ namespace covid_simulation_game
         static string vaccinationsChoice = "tbc";
         static double vaccinationSpreadRate = 0;
         static bool vaccinatedOrNot = false;
+        static int counter2 = 0;
+        static int counter3 = 0;
 
         static void Main(string[] args)
         {
             //getting my colours and telling the user what is happening
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Good morning the world organisation has just found a new virus that is affecting people all over the world," + "\n" + "Your job is to help the New Zealand Government  so that New Zealand survives this pandemic." + "\n" + "when your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
+            Console.WriteLine("Good morning. The world organisation has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand Government, so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
 
 
 
@@ -86,19 +89,22 @@ namespace covid_simulation_game
                 case 1:
                     Console.Clear();
                     money = 15000000000;
-                    orignalSpreadRate = 2;
+                    orignalSpreadRate = 2.1;
+                    deathRate = 0.034;
                     Thread.Sleep(1000);
                     break;
                 case 2:
                     Console.Clear();
                     money = 10000000000;
                     orignalSpreadRate = 2.25;
+                    deathRate = 0.04;
                     Thread.Sleep(1000);
                     break;
                 case 3:
                     Console.Clear();
                     money = 5000000000;
-                    orignalSpreadRate = 2.5;
+                    orignalSpreadRate = 2.45;
+                    deathRate = 0.05;
                     Thread.Sleep(1000);
                     break;
 
@@ -112,7 +118,7 @@ namespace covid_simulation_game
             Console.WriteLine("your starting spread rate is " + orignalSpreadRate + " people infected per person infected");
 
             // calling the methods for what the user wants to do.
-            while (totalCases < 60000000000 && money > 0)
+            while (totalCases < 6000000 && money > 0 && currentCasesForAInt > 0)
             {
                 if (totalCases > 500000 || deaths > 5000 || money < 800000000)
                 {
@@ -125,7 +131,7 @@ namespace covid_simulation_game
 
                 if (weekNum <= 5)
                 {
-
+                    
                     noUserChanges();
                     Console.WriteLine("press enter when finished");
                     enter = Console.ReadLine();
@@ -133,11 +139,11 @@ namespace covid_simulation_game
                 }
                 
 
-                if (weekNum > 5 && weekNum <= 20)
+                if (weekNum > 5 && weekNum <= 32)
                 {
 
-                    Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
-                    Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
+                    Console.WriteLine("do you want to start or stay in lockdown (yes or no)." + "\n" + " This will decrease your bank value by 400 million per week but remember to save enough  money for your vaccinations");
+                    Console.WriteLine(" Vaccinations cost  around 1 billion dollars to vaccinate the whole country, some cost more and some cost less" + "\n" + "A isolation facility will cost $400 million to build");
                     trueOrFalse = false;
                     while (trueOrFalse == false)
                     {
@@ -159,18 +165,18 @@ namespace covid_simulation_game
                         }
 
                     }
-                    if (weekNum > 9)
+                    if (weekNum >= 12)
                     {
                         callingTheIssalationFacility();
                     }
-                    if (weekNum < 9)
+                    if (weekNum < 12)
                     {
                         calingGoingIntoLockdown();
                     }
 
                         
                 }
-                if(weekNum > 20)
+                if(weekNum > 32)
                 {
                     usingVaccinationsChosen();
                 }
@@ -181,19 +187,20 @@ namespace covid_simulation_game
             
 // telling me if i lost of won or lost
                 Console.ForegroundColor = ConsoleColor.Red;
-                if (totalCases > 5000000)
+                if (totalCases > 6000000)
                 {
                     Console.WriteLine("you have too many cases");
                     Console.WriteLine("you lost");
                 }
-                if (money < 1000000)
+                else if (money < 10)
                 {
                     Console.WriteLine("you have run out of money");
                     Console.WriteLine("you lost");
                 }
-                if (currentCases < 1)
+                else if (currentCases < 1)
                 {
-                    Console.WriteLine("You won, congratulations");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You won, congratulations");
                 }
         }
 
@@ -255,6 +262,7 @@ namespace covid_simulation_game
             {
                 spreadRate = orignalSpreadRate;
             }
+
             importedCases = 0;
             recovered = 0;
             iscalationNotWorking();
@@ -264,7 +272,7 @@ namespace covid_simulation_game
         //method for going into lockdown without an issalation facility
         public static double goingIntoLockDown()
         {
-            money = money - 400000000;
+ 
             importedCases = 0;
             recovered = 0;
             if (vaccinatedOrNot == false)
@@ -285,7 +293,7 @@ namespace covid_simulation_game
             }
             importedCases = 0;
             recovered = 0;
-            money = money - 400000000;
+
             figuringOutTheCases();
             return 1;
         }
@@ -298,7 +306,7 @@ namespace covid_simulation_game
             }
             importedCases = 0;
             recovered = 0;
-            money = money - 800000000;
+
             figuringOutTheCases();
             return 1;
         }
@@ -334,32 +342,51 @@ namespace covid_simulation_game
             if (iccalationFacility == "yes" && lockDown == "yes")
             {
                 goingIntoLockdownWithAIscalationFacilityWorking();
-                money = money - 450000000;
+                if (counter2 < 1)
+                {
+                    money = money - 800000000;
+                }
+                else
+                {
+                    money = money - 400000000;
+                }
                 Console.WriteLine("your total money is now $" + money);
                 Console.WriteLine("press enter when finished");
                 enter = Console.ReadLine();
                 Console.Clear();
+                counter2++;
             }
             else if (iccalationFacility == "yes" && lockDown == "no")
             {
+                if (counter3 < 1)
+                {
+                    money = money - 400000000;
+                }
+                else
+                {
+                    money = money + 100000000;
+                }
                 noUserChangesWithAIscalationFacilityWorking();
-                money = money + 50000000;
+
                 Console.WriteLine("press enter when finished");
                 enter = Console.ReadLine();
                 Console.Clear();
+                counter3++;
             }
             else if (iccalationFacility == "no" && lockDown == "no")
             {
                 noUserChanges();
-                money = money + 50000000;
+                money = money + 100000000;
+
                 Console.WriteLine("press enter when finished");
                 enter = Console.ReadLine();
                 Console.Clear();
+
             }
             else if (iccalationFacility == "no" && lockDown == "yes")
             {
                 goingIntoLockDown();
-                money = money - 450000000;
+                money = money - 400000000;
                 Console.WriteLine("your total money is now $" + money);
                 Console.WriteLine("press enter when finished");
                 enter = Console.ReadLine();
@@ -381,7 +408,7 @@ namespace covid_simulation_game
             else if (lockDown == "no")
             {
                 noUserChanges();
-                money = money + 50000000;
+                money = money + 100000000;
                 Console.WriteLine("press enter when finished");
                 enter = Console.ReadLine();
                 Console.Clear();
@@ -401,7 +428,8 @@ namespace covid_simulation_game
                 Console.WriteLine("Astrazeneca: this vaccination is 90% effective and will cost you $500,000,000 to vaccinate");
                 Console.WriteLine("Moderna: this vaccination is 95% effective and will cost $3,400,000,000 to vaccinate the whole country");
                 Console.WriteLine("pfizer: this vaccination is 95% effective and will cost $2,000,000,000 to vaccinate the country");
-                
+                Console.WriteLine("These will take two weeks to come into affect");
+
                 trueOrFalse = false;
 
 
@@ -432,22 +460,31 @@ namespace covid_simulation_game
                 if (vaccinationsChoice == "Astrazeneca")
                 {
                     vaccinationSpreadRate = 0.1 * orignalSpreadRate;
-                    spreadRate = vaccinationSpreadRate;
-                    money = money - 500000000;
+                    //spreadRate = vaccinationSpreadRate;
+                    if (counter < 1)
+                    {
+                        money = money - 500000000;
+                    }
                     Console.WriteLine("your total money is now $" + money);
                 }
                 else if(vaccinationsChoice == "Moderna")
                 {
                     vaccinationSpreadRate = 0.05 * orignalSpreadRate;
-                    spreadRate = vaccinationSpreadRate;
-                    money = money - 3400000000;
+                    //spreadRate = vaccinationSpreadRate;
+                    if (counter < 1)
+                    {
+                        money = money - 3400000000;
+                    }
                     Console.WriteLine("your total money is now $" + money);
                 }
                 else if(vaccinationsChoice == "pfizer")
                 {
                     vaccinationSpreadRate = 0.05 * orignalSpreadRate;
-                    spreadRate = vaccinationSpreadRate;
-                    money = money - 2000000000;
+                    //spreadRate = vaccinationSpreadRate;
+                    if (counter < 1)
+                    { 
+                        money = money - 2000000000;
+                    }
                     Console.WriteLine("your total money is now $" + money);
                 }
             }
@@ -457,16 +494,22 @@ namespace covid_simulation_game
         }
         public static double usingVaccinationsChosen()
         {
-            Console.WriteLine("your spread rate is" + spreadRate);
+            int counter = 0;
+
             VaccinationsChoices();
             if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "pfizer")
             {
-                vaccinatedOrNot = true;
+                counter++;
+                
+                
+                
+                    vaccinatedOrNot = true;
+                
                 
                 Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
                 Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
                 trueOrFalse = false;
-                Console.WriteLine("your spread rate is" + vaccinationsChoice);
+
                 while (trueOrFalse == false)
                 {
                     try
@@ -487,12 +530,12 @@ namespace covid_simulation_game
                     }
 
                 }
-                Console.WriteLine("your spread rate is" + vaccinationsChoice);
+
                 callingTheIssalationFacility();
             }
             if(vaccinationsChoice == "no")
             {
-                Console.WriteLine("your spread rate is" + vaccinationsChoice);
+
                 Console.WriteLine("do you want to start or stay in lockdown (yes or no)" + "\n" + " this will decrease  your bank value by 400 million per week but remember to save enough  money for your vaccinations");
                 Console.WriteLine(" vaccinations  cost 1 billion dollars to vaccinate the whole country" + "\n" + "and a isolation facility will cost 500 million to build");
                 trueOrFalse = false;
@@ -519,7 +562,7 @@ namespace covid_simulation_game
 
                 callingTheIssalationFacility();
             }
-            Console.WriteLine("your spread rate is" + spreadRate);
+
             return 1;
         }
 
