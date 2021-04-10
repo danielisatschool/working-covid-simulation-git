@@ -46,7 +46,7 @@ namespace covid_simulation_game
             //getting my colours and telling the user what is happening
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Good morning. The New Zealand goverment has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand Government, so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
+            Console.WriteLine("Good morning. The New Zealand goverment has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand government , so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
 
 
 
@@ -650,5 +650,5 @@ namespace covid_simulation_game
 
     }
 }
-////https://www.geeksforgeeks.org/c-sharp-how-to-change-foreground-color-of-text-in-console/
+//https://www.geeksforgeeks.org/c-sharp-how-to-change-foreground-color-of-text-in-console/
 //https://www.bbc.com/news/world-asia-india-55748124
