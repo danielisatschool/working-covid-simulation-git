@@ -47,7 +47,7 @@ namespace covid_simulation_game
             //getting my colours and telling the user what is happening
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Good morning. The world organisation has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand Government, so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
+            Console.WriteLine("Good morning. The New Zealand goverment has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand Government, so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
 
 
 
@@ -104,7 +104,7 @@ namespace covid_simulation_game
                 case 3:
                     Console.Clear();
                     money = 5000000000;
-                    orignalSpreadRate = 2.45;
+                    orignalSpreadRate = 2.5;
                     deathRate = 0.05;
                     Thread.Sleep(1000);
                     break;
@@ -121,7 +121,7 @@ namespace covid_simulation_game
             // calling the methods for what the user wants to do.
             while (totalCases < 6000000 && money > 0 && currentCasesForAInt > 0)
             {
-                if (totalCases > 500000 || deaths > 5000 || money < 800000000)
+                if (totalCases > 400000 || deaths > 5000 || money < 800000000)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
@@ -265,7 +265,7 @@ namespace covid_simulation_game
             }
             else
             {
-                if (counter1 < 2)
+                if (counter1 < 4)
                 {
                     spreadRate = orignalSpreadRate;
                 }
@@ -293,7 +293,7 @@ namespace covid_simulation_game
             }
             else
             {
-                if (counter1 < 2)
+                if (counter1 < 4)
                 {
                     spreadRate = lockdownRValue;
                 }
@@ -316,7 +316,7 @@ namespace covid_simulation_game
             }
             else
             {
-                if (counter1 < 2)
+                if (counter1 < 4)
                 {
                     spreadRate = orignalSpreadRate;
                 }
@@ -340,7 +340,7 @@ namespace covid_simulation_game
             }
             else
             {
-                if (counter1 < 2)
+                if (counter1 < 4)
                 {
                     spreadRate = lockdownRValue;
                 }
@@ -470,10 +470,10 @@ namespace covid_simulation_game
                 
 
                 Console.WriteLine("do you want to get your country vaccinated" + '\n' + "you can choose between 3 vaccinations");
-                Console.WriteLine("Astrazeneca: this vaccination is 90% effective and will cost you $500,000,000 to vaccinate");
+                Console.WriteLine("Astrazeneca: this vaccination is 70% effective and will cost you $500,000,000 to vaccinate");
                 Console.WriteLine("Moderna: this vaccination is 95% effective and will cost $3,400,000,000 to vaccinate the whole country");
-                Console.WriteLine("pfizer: this vaccination is 95% effective and will cost $2,000,000,000 to vaccinate the country");
-                Console.WriteLine("These will take two weeks to come into affect");
+                Console.WriteLine("pfizer: this vaccination is 85% effective and will cost $2,000,000,000 to vaccinate the country");
+                Console.WriteLine("These will take four weeks to come into affect");
 
                 trueOrFalse = false;
 
@@ -504,7 +504,7 @@ namespace covid_simulation_game
                 }
                 if (vaccinationsChoice == "Astrazeneca")
                 {
-                    vaccinationSpreadRate = 0.1 * orignalSpreadRate;
+                    vaccinationSpreadRate = 0.3 * spreadRate;
                     //spreadRate = vaccinationSpreadRate;
                     if (counter < 1)
                     {
@@ -514,7 +514,7 @@ namespace covid_simulation_game
                 }
                 else if(vaccinationsChoice == "Moderna")
                 {
-                    vaccinationSpreadRate = 0.05 * orignalSpreadRate;
+                    vaccinationSpreadRate = 0.05 * spreadRate;
                     //spreadRate = vaccinationSpreadRate;
                     if (counter < 1)
                     {
@@ -524,7 +524,7 @@ namespace covid_simulation_game
                 }
                 else if(vaccinationsChoice == "pfizer")
                 {
-                    vaccinationSpreadRate = 0.05 * orignalSpreadRate;
+                    vaccinationSpreadRate = 0.15 * spreadRate;
                     //spreadRate = vaccinationSpreadRate;
                     if (counter < 1)
                     { 
