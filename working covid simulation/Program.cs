@@ -40,6 +40,7 @@ namespace covid_simulation_game
         static bool vaccinatedOrNot = false;
         static int counter2 = 0;
         static int counter3 = 0;
+        static int counter1 = 0;
 
         static void Main(string[] args)
         {
@@ -262,6 +263,17 @@ namespace covid_simulation_game
             {
                 spreadRate = orignalSpreadRate;
             }
+            else
+            {
+                if (counter1 < 2)
+                {
+                    spreadRate = orignalSpreadRate;
+                }
+                else
+                {
+                    spreadRate = vaccinationSpreadRate;
+                }
+            }
 
             importedCases = 0;
             recovered = 0;
@@ -279,6 +291,17 @@ namespace covid_simulation_game
             {
                 spreadRate = lockdownRValue;
             }
+            else
+            {
+                if (counter1 < 2)
+                {
+                    spreadRate = lockdownRValue;
+                }
+                else
+                {
+                    spreadRate = vaccinationSpreadRate;
+                }
+            }
             iscalationNotWorking();
             figuringOutTheCases();
 
@@ -290,6 +313,17 @@ namespace covid_simulation_game
             if (vaccinatedOrNot == false)
             {
                 spreadRate = orignalSpreadRate;
+            }
+            else
+            {
+                if (counter1 < 2)
+                {
+                    spreadRate = orignalSpreadRate;
+                }
+                else
+                {
+                    spreadRate = vaccinationSpreadRate;
+                }
             }
             importedCases = 0;
             recovered = 0;
@@ -303,6 +337,17 @@ namespace covid_simulation_game
             if (vaccinatedOrNot == false)
             {
                 spreadRate = lockdownRValue;
+            }
+            else
+            {
+                if (counter1 < 2)
+                {
+                    spreadRate = lockdownRValue;
+                }
+                else
+                {
+                    spreadRate = vaccinationSpreadRate;
+                }
             }
             importedCases = 0;
             recovered = 0;
@@ -494,12 +539,12 @@ namespace covid_simulation_game
         }
         public static double usingVaccinationsChosen()
         {
-            int counter = 0;
+            
 
             VaccinationsChoices();
             if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "pfizer")
             {
-                counter++;
+                
                 
                 
                 
@@ -532,6 +577,7 @@ namespace covid_simulation_game
                 }
 
                 callingTheIssalationFacility();
+                counter1++;
             }
             if(vaccinationsChoice == "no")
             {
