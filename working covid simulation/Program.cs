@@ -46,7 +46,7 @@ namespace covid_simulation_game
             //getting my colours and telling the user what is happening
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Good morning. The New Zealand goverment has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand government , so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
+            Console.WriteLine("Good morning. The New Zealand goverment has just found a new virus that is affecting people all over the world." + "\n" + "Your job is to help the New Zealand government, so that New Zealand survives this pandemic." + "\n" + "When your Text is Green you are safe, but if the text colour goes red then your whole country is at risk of the virus becoming out of control and take over the country");
 
 
 
@@ -501,7 +501,7 @@ namespace covid_simulation_game
                 Console.WriteLine("do you want to get your country vaccinated" + '\n' + "you can choose between 3 vaccinations");
                 Console.WriteLine("Astrazeneca: this vaccination is 70% effective and will cost you $500,000,000 to vaccinate");
                 Console.WriteLine("Moderna: this vaccination is 95% effective and will cost $3,400,000,000 to vaccinate the whole country");
-                Console.WriteLine("pfizer: this vaccination is 85% effective and will cost $2,000,000,000 to vaccinate the country");
+                Console.WriteLine("Pfizer: this vaccination is 85% effective and will cost $2,000,000,000 to vaccinate the country");
                 Console.WriteLine("These will take two months to come into affect");
                 Console.WriteLine("please tell me what vaccination you want or say no if you dont want a vaccination. please be careful it is case sensitive");
 
@@ -513,7 +513,7 @@ namespace covid_simulation_game
                     try
                     {
                         vaccinationsChoice = Console.ReadLine();
-                        if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "pfizer")
+                        if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "Pfizer")
                         {
                             trueOrFalse = true;
                             areYouVaccinated = true;
@@ -553,7 +553,7 @@ namespace covid_simulation_game
                     }
                     Console.WriteLine("your total money is now $" + money);
                 }
-                else if(vaccinationsChoice == "pfizer")
+                else if(vaccinationsChoice == "Pfizer")
                 {
                     vaccinationSpreadRate = 0.15 * spreadRate;
                     //spreadRate = vaccinationSpreadRate;
@@ -574,7 +574,7 @@ namespace covid_simulation_game
             //calling the method
             VaccinationsChoices();
             //what to do if they want a vaccination
-            if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "pfizer")
+            if (vaccinationsChoice == "Astrazeneca" || vaccinationsChoice == "Moderna" || vaccinationsChoice == "Pfizer")
             {
                 
                 
